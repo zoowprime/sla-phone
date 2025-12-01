@@ -55,7 +55,6 @@
       padding: 12px 12px 18px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       background:
         radial-gradient(circle at top left, #ff8fb844 0, transparent 55%),
         radial-gradient(circle at bottom right, #5b8dff55 0, transparent 55%),
@@ -83,6 +82,7 @@
       padding: 0 10px;
       font-size: 10px;
       color: #a9b1c7;
+      z-index: 5;
     }
 
     .dynamic-island-dot {
@@ -93,15 +93,290 @@
       box-shadow: 0 0 6px rgba(0, 255, 204, 0.6);
     }
 
-    /* ----- BARRE DE STATUT ----- */
+    .screen-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin-top: 32px; /* espace sous la dynamic island */
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ----------------- LOCK SCREEN ----------------- */
+
+    .lock-screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 4px 6px;
+      gap: 14px;
+    }
+
+    .ls-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+      font-size: 11px;
+      color: #f5f6ff;
+      text-shadow: 0 0 4px #000;
+    }
+
+    .ls-status-left,
+    .ls-status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ls-time-small {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ls-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .ls-time-big {
+      font-size: 46px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    }
+
+    .ls-date {
+      font-size: 14px;
+      opacity: 0.95;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .ls-control {
+      margin: 0 4px;
+      border-radius: 24px;
+      padding: 10px 10px 8px;
+      background: radial-gradient(circle at top left, #ffffff18, #00000066);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(22px) saturate(135%);
+      -webkit-backdrop-filter: blur(22px) saturate(135%);
+      display: grid;
+      grid-template-columns: 1.1fr 1.2fr;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .ls-control-chips {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .ls-chip {
+      border-radius: 14px;
+      padding: 6px 8px;
+      background: radial-gradient(circle at top left, #ffffff22, #00000055);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
+    .ls-chip-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 180deg,
+        #ffdd77,
+        #7af7ff,
+        #9c7aff,
+        #ff7a7a,
+        #ffdd77
+      );
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .ls-control-sliders {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ls-slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ls-slider-label {
+      font-size: 10px;
+      opacity: 0.9;
+    }
+
+    .ls-slider-track {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 8px 18px rgba(0, 0, 0, 0.8);
+    }
+
+    .ls-slider-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 65%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #4fc3ff, #8b7bff, #ff8fb8);
+    }
+
+    .ls-slider-thumb {
+      position: absolute;
+      top: 50%;
+      left: 65%;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      background: #ffffffee;
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.35),
+        0 6px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .ls-widgets-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .ls-widget {
+      flex: 1;
+      border-radius: 16px;
+      padding: 6px 8px;
+      background: radial-gradient(circle at top left, #ffffff11, #00000055);
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      opacity: 0.9;
+    }
+
+    .ls-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 14px 2px;
+    }
+
+    .ls-round-btn {
+      border: none;
+      outline: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, #ffffff22, #00000088);
+      box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.09);
+      color: #f5f6ff;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .ls-round-btn:active {
+      transform: scale(0.92) translateY(1px);
+    }
+
+    .ls-home-indicator-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 4px;
+    }
+
+    .ls-home-indicator {
+      width: 90px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(0, 0, 0, 0.45);
+    }
+
+    .ls-home-indicator::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      );
+      transform: translateX(-100%);
+      animation: ls-swipe-hint 1.5s ease-in-out infinite;
+    }
+
+    @keyframes ls-swipe-hint {
+      0% {
+        transform: translateX(-120%);
+      }
+      60% {
+        transform: translateX(120%);
+      }
+      100% {
+        transform: translateX(120%);
+      }
+    }
+
+    /* ------------ HOME SCREEN (APRÈS DÉVERROUILLAGE) ------------ */
+
+    .home-screen {
+      flex: 1;
+      display: none; /* activée via .active */
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 8px;
+      gap: 12px;
+    }
+
+    .home-screen.active {
+      display: flex;
+    }
+
+    /* BARRE DE STATUT (HOME) */
     .status-bar {
-      margin-top: 42px; /* espace sous dynamic island */
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 11px;
       color: #cfd6eb;
       text-shadow: 0 0 4px #000;
+      padding-inline: 2px;
     }
 
     .status-left,
@@ -119,16 +394,6 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    /* ----- HOME SCREEN ----- */
-    .home-screen {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding-top: 8px;
-      gap: 12px;
     }
 
     /* WIDGETS (LIQUID GLASS) */
@@ -385,84 +650,154 @@
           <div class="dynamic-island-dot"></div>
         </div>
 
-        <!-- Barre de statut -->
-        <div class="status-bar">
-          <div class="status-left">
-            <span class="status-pill">Belleshore</span>
+        <div class="screen-content">
+          <!-- LOCK SCREEN -->
+          <div class="lock-screen" id="lockScreen">
+            <div class="ls-status-bar">
+              <div class="ls-status-left">
+                <span class="ls-time-small">22:26</span>
+              </div>
+              <div class="ls-status-right">
+                <span>📶</span>
+                <span>📡</span>
+                <span>🔋 82%</span>
+              </div>
+            </div>
+
+            <div class="ls-center">
+              <div class="ls-time-big">22:26</div>
+              <div class="ls-date">dimanche, 30 novembre</div>
+            </div>
+
+            <div class="ls-control">
+              <div class="ls-control-chips">
+                <div class="ls-chip">
+                  <div class="ls-chip-icon"></div>
+                  <span>Volume</span>
+                </div>
+                <div class="ls-chip">
+                  <div class="ls-chip-icon"></div>
+                  <span>Luminosité</span>
+                </div>
+                <div class="ls-chip">
+                  <div class="ls-chip-icon"></div>
+                  <span>Bluetooth</span>
+                </div>
+                <div class="ls-chip">
+                  <div class="ls-chip-icon"></div>
+                  <span>Mode avion</span>
+                </div>
+              </div>
+              <div class="ls-control-sliders">
+                <div class="ls-slider-group">
+                  <span class="ls-slider-label">Volume</span>
+                  <div class="ls-slider-track">
+                    <div class="ls-slider-fill"></div>
+                    <div class="ls-slider-thumb"></div>
+                  </div>
+                </div>
+                <div class="ls-slider-group">
+                  <span class="ls-slider-label">Luminosité</span>
+                  <div class="ls-slider-track">
+                    <div class="ls-slider-fill"></div>
+                    <div class="ls-slider-thumb"></div>
+                  </div>
+                </div>
+                <div class="ls-widgets-row">
+                  <div class="ls-widget">Widgets</div>
+                  <div class="ls-widget">Notes</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ls-bottom">
+              <button class="ls-round-btn" aria-label="Lampe torche">🔦</button>
+              <div class="ls-home-indicator-wrapper">
+                <div class="ls-home-indicator" id="homeIndicator"></div>
+              </div>
+              <button class="ls-round-btn" aria-label="Appareil photo">📷</button>
+            </div>
           </div>
-          <div class="status-right">
-            <span>5G</span>
-            <span>🔋 82%</span>
+
+          <!-- HOME SCREEN -->
+          <div class="home-screen" id="homeScreen">
+            <!-- Barre de statut -->
+            <div class="status-bar">
+              <div class="status-left">
+                <!-- vide volontairement -->
+              </div>
+              <div class="status-right">
+                <span>5G</span>
+                <span>🔋 82%</span>
+              </div>
+            </div>
+
+            <!-- Widget heure/date -->
+            <section class="widget-clock glass">
+              <div class="widget-clock-time">21:09</div>
+              <div class="widget-clock-date">Lundi 1 décembre</div>
+            </section>
+
+            <!-- Grille d'apps -->
+            <section class="app-grid">
+              <button class="app-icon" data-app="telephone">
+                <div class="app-icon-circle"></div>
+                <span class="app-icon-label">Téléphone</span>
+              </button>
+              <button class="app-icon" data-app="messages">
+                <div class="app-icon-circle"></div>
+                <span class="app-icon-label">Messages</span>
+              </button>
+              <button class="app-icon" data-app="contacts">
+                <div class="app-icon-circle"></div>
+                <span class="app-icon-label">Contacts</span>
+              </button>
+              <button class="app-icon" data-app="bank">
+                <div class="app-icon-circle"></div>
+                <span class="app-icon-label">Banque</span>
+              </button>
+              <button class="app-icon" data-app="inventory">
+                <div class="app-icon-circle"></div>
+                <span class="app-icon-label">Inventaire</span>
+              </button>
+              <button class="app-icon" data-app="telegrams">
+                <div class="app-icon-circle"></div>
+                <span class="app-icon-label">Télégrammes</span>
+              </button>
+              <button class="app-icon" data-app="notes">
+                <div class="app-icon-circle"></div>
+                <span class="app-icon-label">Notes</span>
+              </button>
+              <button class="app-icon" data-app="settings">
+                <div class="app-icon-circle"></div>
+                <span class="app-icon-label">Paramètres</span>
+              </button>
+            </section>
+
+            <!-- Dock -->
+            <section class="dock glass">
+              <button class="dock-app">
+                <span class="dock-app-dot"></span>
+                <span>Home</span>
+              </button>
+              <button class="dock-app">
+                <span>Menu</span>
+              </button>
+              <button class="dock-app">
+                <span>📶 Réseau</span>
+              </button>
+            </section>
           </div>
-        </div>
 
-        <!-- Home screen -->
-        <div class="home-screen">
-          <!-- Widget heure/date -->
-          <section class="widget-clock glass">
-            <div class="widget-clock-time">21:09</div>
-            <div class="widget-clock-date">Lundi 1 décembre</div>
-          </section>
-
-          <!-- Grille d'apps -->
-          <section class="app-grid">
-            <button class="app-icon" data-app="telephone">
-              <div class="app-icon-circle"></div>
-              <span class="app-icon-label">Téléphone</span>
-            </button>
-            <button class="app-icon" data-app="messages">
-              <div class="app-icon-circle"></div>
-              <span class="app-icon-label">Messages</span>
-            </button>
-            <button class="app-icon" data-app="contacts">
-              <div class="app-icon-circle"></div>
-              <span class="app-icon-label">Contacts</span>
-            </button>
-            <button class="app-icon" data-app="bank">
-              <div class="app-icon-circle"></div>
-              <span class="app-icon-label">Banque</span>
-            </button>
-            <button class="app-icon" data-app="inventory">
-              <div class="app-icon-circle"></div>
-              <span class="app-icon-label">Inventaire</span>
-            </button>
-            <button class="app-icon" data-app="telegrams">
-              <div class="app-icon-circle"></div>
-              <span class="app-icon-label">Télégrammes</span>
-            </button>
-            <button class="app-icon" data-app="notes">
-              <div class="app-icon-circle"></div>
-              <span class="app-icon-label">Notes</span>
-            </button>
-            <button class="app-icon" data-app="settings">
-              <div class="app-icon-circle"></div>
-              <span class="app-icon-label">Paramètres</span>
-            </button>
-          </section>
-
-          <!-- Dock -->
-          <section class="dock glass">
-            <button class="dock-app">
-              <span class="dock-app-dot"></span>
-              <span>Home</span>
-            </button>
-            <button class="dock-app">
-              <span>Belleshore</span>
-            </button>
-            <button class="dock-app">
-              <span>📶 Réseau</span>
-            </button>
-          </section>
-        </div>
-
-        <!-- Vue d'application -->
-        <div class="app-view" id="appView">
-          <div class="app-view-header">
-            <button class="back-button" id="backButton">‹</button>
-            <div class="app-view-title" id="appViewTitle">App</div>
-          </div>
-          <div class="app-view-body" id="appViewBody">
-            <!-- Contenu de l'app chargée -->
+          <!-- VUE D'APP -->
+          <div class="app-view" id="appView">
+            <div class="app-view-header">
+              <button class="back-button" id="backButton">‹</button>
+              <div class="app-view-title" id="appViewTitle">App</div>
+            </div>
+            <div class="app-view-body" id="appViewBody">
+              <!-- Contenu de l'app chargée -->
+            </div>
           </div>
         </div>
       </div>
