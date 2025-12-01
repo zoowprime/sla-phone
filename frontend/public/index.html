@@ -20,7 +20,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at top, #1b2838, #050711 60%);
+      background: radial-gradient(circle at top, #020615, #050711 60%);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Inter", sans-serif;
       color: #ffffff;
@@ -38,100 +38,155 @@
 
     .phone-frame {
       position: relative;
-      aspect-ratio: 9 / 19.5; /* ratio proche iPhone 15/16 */
+      aspect-ratio: 9 / 19.5;
       width: min(380px, 100vw - 32px);
       border-radius: 32px;
       overflow: hidden;
-      background: radial-gradient(circle at top, #283bff, #050711 70%);
+      background: #000;
       box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-        0 0 40px rgba(40, 120, 255, 0.2);
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 0 40px rgba(0, 0, 0, 0.7);
     }
 
     .phone-screen {
       position: relative;
       width: 100%;
       height: 100%;
-      padding: 12px 12px 18px;
+      padding: 10px 10px 16px;
       display: flex;
       flex-direction: column;
       background:
-        radial-gradient(circle at top left, #ff8fb844 0, transparent 55%),
-        radial-gradient(circle at bottom right, #5b8dff55 0, transparent 55%),
-        linear-gradient(145deg, #050815 0, #05040c 60%, #101b35 100%);
+        radial-gradient(circle at 10% 0%, #303a7a 0, transparent 55%),
+        radial-gradient(circle at 90% 100%, #4a55aa 0, transparent 55%),
+        radial-gradient(circle at 0% 80%, #141c3d 0, transparent 55%),
+        linear-gradient(145deg, #03040a 0, #101533 45%, #07091b 90%);
       background-size: cover;
     }
 
-    /* ----- DYNAMIC ISLAND / NOTCH ----- */
+    /* ------ Dynamic Island ------ */
     .dynamic-island {
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 36%;
-      max-width: 180px;
-      height: 28px;
-      background: radial-gradient(circle at top, #2a2a2a, #000000);
+      width: 32%;
+      max-width: 170px;
+      height: 26px;
+      background: radial-gradient(circle at top, #222, #000);
       border-radius: 999px;
       box-shadow:
-        0 3px 8px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
+        0 3px 8px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 10px;
-      font-size: 10px;
-      color: #a9b1c7;
-      z-index: 5;
-    }
-
-    .dynamic-island-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #00ffcc, #007766);
-      box-shadow: 0 0 6px rgba(0, 255, 204, 0.6);
+      justify-content: center;
+      font-size: 11px;
+      color: #f5f6ff;
+      z-index: 4;
     }
 
     .screen-content {
       flex: 1;
+      margin-top: 30px; /* espace sous Dynamic Island */
       display: flex;
       flex-direction: column;
-      margin-top: 32px; /* espace sous la dynamic island */
       position: relative;
       z-index: 1;
     }
 
-    /* ----------------- LOCK SCREEN ----------------- */
+    /* ===================== LOCK SCREEN ===================== */
 
     .lock-screen {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 10px 4px 6px;
-      gap: 14px;
+      padding: 8px 4px 6px;
     }
 
     .ls-status-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 4px;
+      padding-inline: 4px;
       font-size: 11px;
       color: #f5f6ff;
-      text-shadow: 0 0 4px #000;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
     }
 
     .ls-status-left,
     .ls-status-right {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .ls-time-small {
+    .ls-time-top {
       font-variant-numeric: tabular-nums;
+    }
+
+    /* Réseau & batterie façon iOS */
+    .status-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+    }
+
+    .bar {
+      width: 2px;
+      border-radius: 999px;
+      background: #f5f6ff;
+      opacity: 0.9;
+    }
+
+    .bar:nth-child(1) {
+      height: 5px;
+      opacity: 0.5;
+    }
+    .bar:nth-child(2) {
+      height: 7px;
+      opacity: 0.65;
+    }
+    .bar:nth-child(3) {
+      height: 9px;
+      opacity: 0.8;
+    }
+    .bar:nth-child(4) {
+      height: 11px;
+    }
+
+    .battery {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+    }
+
+    .battery-icon {
+      width: 20px;
+      height: 10px;
+      border-radius: 3px;
+      border: 1px solid #f5f6ff;
+      position: relative;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
+    }
+
+    .battery-icon::after {
+      content: "";
+      position: absolute;
+      right: -3px;
+      top: 2px;
+      width: 2px;
+      height: 6px;
+      border-radius: 1px;
+      background: #f5f6ff;
+    }
+
+    .battery-level {
+      position: absolute;
+      inset: 1px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #7cf081, #c3ff7c);
     }
 
     .ls-center {
@@ -140,161 +195,41 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 6px;
     }
 
     .ls-time-big {
-      font-size: 46px;
+      font-size: 52px;
       font-weight: 700;
       letter-spacing: 2px;
-      text-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 0 14px rgba(0, 0, 0, 0.9);
     }
 
     .ls-date {
       font-size: 14px;
-      opacity: 0.95;
-      text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-    }
-
-    .ls-control {
-      margin: 0 4px;
-      border-radius: 24px;
-      padding: 10px 10px 8px;
-      background: radial-gradient(circle at top left, #ffffff18, #00000066);
-      box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(22px) saturate(135%);
-      -webkit-backdrop-filter: blur(22px) saturate(135%);
-      display: grid;
-      grid-template-columns: 1.1fr 1.2fr;
-      gap: 8px;
-      font-size: 11px;
-    }
-
-    .ls-control-chips {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px;
-    }
-
-    .ls-chip {
-      border-radius: 14px;
-      padding: 6px 8px;
-      background: radial-gradient(circle at top left, #ffffff22, #00000055);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.75),
-        0 0 0 1px rgba(255, 255, 255, 0.06);
-    }
-
-    .ls-chip-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: conic-gradient(
-        from 180deg,
-        #ffdd77,
-        #7af7ff,
-        #9c7aff,
-        #ff7a7a,
-        #ffdd77
-      );
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-    }
-
-    .ls-control-sliders {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .ls-slider-group {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .ls-slider-label {
-      font-size: 10px;
-      opacity: 0.9;
-    }
-
-    .ls-slider-track {
-      position: relative;
-      width: 100%;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.6);
-      overflow: hidden;
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-        0 8px 18px rgba(0, 0, 0, 0.8);
-    }
-
-    .ls-slider-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 65%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #4fc3ff, #8b7bff, #ff8fb8);
-    }
-
-    .ls-slider-thumb {
-      position: absolute;
-      top: 50%;
-      left: 65%;
-      width: 14px;
-      height: 14px;
-      border-radius: 999px;
-      transform: translate(-50%, -50%);
-      background: #ffffffee;
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.35),
-        0 6px 10px rgba(0, 0, 0, 0.7);
-    }
-
-    .ls-widgets-row {
-      display: flex;
-      gap: 6px;
-      margin-top: 2px;
-    }
-
-    .ls-widget {
-      flex: 1;
-      border-radius: 16px;
-      padding: 6px 8px;
-      background: radial-gradient(circle at top left, #ffffff11, #00000055);
-      box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.75),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
-      font-size: 10px;
-      opacity: 0.9;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.85);
+      opacity: 0.98;
     }
 
     .ls-bottom {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      padding: 0 14px 2px;
+      padding: 0 18px 4px;
     }
 
     .ls-round-btn {
       border: none;
       outline: none;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 999px;
-      background: radial-gradient(circle at top left, #ffffff22, #00000088);
+      background: radial-gradient(circle at top left, #ffffff26, #000000aa);
       box-shadow:
         0 10px 22px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(255, 255, 255, 0.09);
+        0 0 0 1px rgba(255, 255, 255, 0.06);
       color: #f5f6ff;
-      font-size: 18px;
+      font-size: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -311,14 +246,14 @@
       flex: 1;
       display: flex;
       justify-content: center;
-      padding-bottom: 4px;
+      padding-bottom: 2px;
     }
 
     .ls-home-indicator {
-      width: 90px;
+      width: 95px;
       height: 4px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
       position: relative;
       overflow: hidden;
       cursor: pointer;
@@ -337,218 +272,189 @@
         rgba(255, 255, 255, 0.9),
         transparent
       );
-      transform: translateX(-100%);
-      animation: ls-swipe-hint 1.5s ease-in-out infinite;
+      transform: translateX(-130%);
+      animation: swipe-hint 1.5s ease-in-out infinite;
     }
 
-    @keyframes ls-swipe-hint {
+    @keyframes swipe-hint {
       0% {
-        transform: translateX(-120%);
+        transform: translateX(-130%);
       }
       60% {
-        transform: translateX(120%);
+        transform: translateX(130%);
       }
       100% {
-        transform: translateX(120%);
+        transform: translateX(130%);
       }
     }
 
-    /* ------------ HOME SCREEN (APRÈS DÉVERROUILLAGE) ------------ */
+    /* ===================== HOME SCREEN ===================== */
 
     .home-screen {
       flex: 1;
-      display: none; /* activée via .active */
+      display: none;
       flex-direction: column;
-      justify-content: space-between;
-      padding-top: 8px;
-      gap: 12px;
+      padding: 6px 4px 4px;
+      gap: 8px;
     }
 
     .home-screen.active {
       display: flex;
     }
 
-    /* BARRE DE STATUT (HOME) */
-    .status-bar {
+    .hs-status-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 4px;
       font-size: 11px;
-      color: #cfd6eb;
-      text-shadow: 0 0 4px #000;
-      padding-inline: 2px;
+      color: #f5f6ff;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
     }
 
-    .status-left,
-    .status-right {
+    .hs-status-left,
+    .hs-status-right {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .status-pill {
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 10px;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .hs-time-top {
+      font-variant-numeric: tabular-nums;
     }
 
-    /* WIDGETS (LIQUID GLASS) */
-    .glass {
-      background: radial-gradient(circle at top left, #ffffff1a, #ffffff05);
-      border-radius: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      backdrop-filter: blur(18px) saturate(130%);
-      -webkit-backdrop-filter: blur(18px) saturate(130%);
+    /* Grille d'apps façon iOS */
+
+    .apps-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px 6px;
+      padding: 6px 2px 4px;
+      align-content: flex-start;
+    }
+
+    .icon-app {
+      border: none;
+      outline: none;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .icon-app-square {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      background: conic-gradient(
+        from 200deg,
+        #ffc857,
+        #ff5c7a,
+        #8f6bff,
+        #45c4ff,
+        #65e892,
+        #ffc857
+      );
       box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.6),
+        0 8px 15px rgba(0, 0, 0, 0.8),
         0 0 0 1px rgba(255, 255, 255, 0.06);
     }
 
-    .widget-clock {
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .widget-clock-time {
-      font-size: 32px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .widget-clock-date {
-      font-size: 12px;
-      opacity: 0.85;
-    }
-
-    /* GRILLE D’APPS */
-    .app-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      padding: 4px 4px 0;
-      flex: 1;
-    }
-
-    .app-icon {
-      border: none;
-      outline: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      padding: 8px 4px 6px;
-      background: radial-gradient(circle at top left, #ffffff22, #00000044);
-      border-radius: 18px;
-      box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.85),
-        0 0 0 1px rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: #f9f9ff;
+    .icon-app-label {
       font-size: 11px;
-      transition:
-        transform 0.1s ease-out,
-        box-shadow 0.15s ease-out,
-        background 0.2s ease-out;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
     }
 
-    .app-icon-circle {
-      width: 26px;
-      height: 26px;
-      border-radius: 10px;
-      background: conic-gradient(
-        from 180deg,
-        #ff7a7a,
-        #ffb347,
-        #7af7ff,
-        #9c7aff,
-        #ff7a7a
-      );
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+    .icon-app:active .icon-app-square {
+      transform: scale(0.93) translateY(1px);
+      transition: transform 0.1s ease-out;
     }
 
-    .app-icon-label {
-      text-shadow: 0 0 4px #000;
-      max-width: 100%;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .apps-page-dots {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      padding-bottom: 4px;
     }
 
-    .app-icon:active {
-      transform: scale(0.94) translateY(1px);
-      box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(255, 255, 255, 0.12);
-      background: radial-gradient(circle at bottom, #ffffff11, #00000077);
+    .page-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.45);
     }
 
-    /* DOCK */
+    .page-dot.active {
+      width: 14px;
+      border-radius: 999px;
+      background: #ffffff;
+    }
+
+    /* Dock */
+
     .dock {
       margin-top: 4px;
+      margin-inline: 6px;
+      border-radius: 20px;
       padding: 6px 10px;
-      border-radius: 18px;
+      background: rgba(5, 8, 25, 0.75);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
+      box-shadow:
+        0 18px 38px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
     }
 
-    .dock-app {
-      flex: 1;
-      height: 34px;
-      border-radius: 14px;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      background: radial-gradient(circle at top left, #ffffff33, #00000055);
-      box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      font-size: 11px;
-      color: #f6f7ff;
-      text-shadow: 0 0 4px #000;
+    .dock-icon {
+      border-radius: 16px;
+      width: 56px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      transition: transform 0.1s ease-out, box-shadow 0.15s ease-out;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+      cursor: pointer;
+      border: none;
+      outline: none;
     }
 
-    .dock-app:active {
-      transform: scale(0.95) translateY(1px);
-      box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.85),
-        0 0 0 1px rgba(255, 255, 255, 0.14);
+    .dock-icon-inner {
+      width: 46px;
+      height: 32px;
+      border-radius: 11px;
+      background: conic-gradient(
+        from 200deg,
+        #65e892,
+        #45c4ff,
+        #8f6bff,
+        #ff5c7a,
+        #ffc857
+      );
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
     }
 
-    .dock-app-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22ff88;
-      box-shadow: 0 0 6px rgba(34, 255, 136, 0.7);
+    .dock-icon:active .dock-icon-inner {
+      transform: scale(0.93) translateY(1px);
+      transition: transform 0.12s ease-out;
     }
 
-    /* ----- VUE D'APPLICATION ----- */
+    /* ------ Vue d'application ------ */
+
     .app-view {
-      position: relative;
-      flex: 1;
-      display: none; /* cachée par défaut */
+      position: absolute;
+      inset: 0 0 0 0;
+      padding: 10px 4px 8px;
+      display: none;
       flex-direction: column;
       gap: 8px;
-      padding-top: 10px;
     }
 
     .app-view.active {
@@ -561,12 +467,12 @@
       gap: 10px;
       padding: 8px 10px;
       border-radius: 18px;
-      background: radial-gradient(circle at top left, #ffffff22, #00000055);
+      background: radial-gradient(circle at top left, #ffffff22, #00000077);
       box-shadow:
         0 10px 24px rgba(0, 0, 0, 0.9),
         0 0 0 1px rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
     .back-button {
@@ -601,12 +507,12 @@
       margin-top: 4px;
       padding: 10px;
       border-radius: 18px;
-      background: radial-gradient(circle at top left, #ffffff16, #00000066);
+      background: radial-gradient(circle at top left, #ffffff16, #00000088);
       box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-        0 16px 32px rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+        0 16px 32px rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       font-size: 12px;
       overflow-y: auto;
     }
@@ -622,20 +528,17 @@
         border-radius: 26px;
       }
 
-      .widget-clock-time {
-        font-size: 26px;
+      .ls-time-big {
+        font-size: 44px;
       }
 
-      .app-grid {
-        gap: 8px;
-      }
-
-      .app-icon {
-        padding: 6px 2px 4px;
+      .icon-app-square {
+        width: 48px;
+        height: 48px;
       }
 
       .dock {
-        padding-inline: 8px;
+        margin-inline: 4px;
       }
     }
   </style>
@@ -645,69 +548,34 @@
     <div class="phone-frame">
       <div class="phone-screen">
         <!-- Dynamic Island -->
-        <div class="dynamic-island">
-          <span>Music</span>
-          <div class="dynamic-island-dot"></div>
-        </div>
+        <div class="dynamic-island"></div>
 
         <div class="screen-content">
           <!-- LOCK SCREEN -->
           <div class="lock-screen" id="lockScreen">
             <div class="ls-status-bar">
               <div class="ls-status-left">
-                <span class="ls-time-small">22:26</span>
+                <span class="ls-time-top">22:26</span>
               </div>
               <div class="ls-status-right">
-                <span>📶</span>
-                <span>📡</span>
-                <span>🔋 82%</span>
+                <div class="status-bars">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </div>
+                <div class="battery">
+                  <div class="battery-icon">
+                    <div class="battery-level"></div>
+                  </div>
+                  <span>100</span>
+                </div>
               </div>
             </div>
 
             <div class="ls-center">
               <div class="ls-time-big">22:26</div>
-              <div class="ls-date">dimanche, 30 novembre</div>
-            </div>
-
-            <div class="ls-control">
-              <div class="ls-control-chips">
-                <div class="ls-chip">
-                  <div class="ls-chip-icon"></div>
-                  <span>Volume</span>
-                </div>
-                <div class="ls-chip">
-                  <div class="ls-chip-icon"></div>
-                  <span>Luminosité</span>
-                </div>
-                <div class="ls-chip">
-                  <div class="ls-chip-icon"></div>
-                  <span>Bluetooth</span>
-                </div>
-                <div class="ls-chip">
-                  <div class="ls-chip-icon"></div>
-                  <span>Mode avion</span>
-                </div>
-              </div>
-              <div class="ls-control-sliders">
-                <div class="ls-slider-group">
-                  <span class="ls-slider-label">Volume</span>
-                  <div class="ls-slider-track">
-                    <div class="ls-slider-fill"></div>
-                    <div class="ls-slider-thumb"></div>
-                  </div>
-                </div>
-                <div class="ls-slider-group">
-                  <span class="ls-slider-label">Luminosité</span>
-                  <div class="ls-slider-track">
-                    <div class="ls-slider-fill"></div>
-                    <div class="ls-slider-thumb"></div>
-                  </div>
-                </div>
-                <div class="ls-widgets-row">
-                  <div class="ls-widget">Widgets</div>
-                  <div class="ls-widget">Notes</div>
-                </div>
-              </div>
+              <div class="ls-date">dimanche, novembre 30</div>
             </div>
 
             <div class="ls-bottom">
@@ -721,72 +589,141 @@
 
           <!-- HOME SCREEN -->
           <div class="home-screen" id="homeScreen">
-            <!-- Barre de statut -->
-            <div class="status-bar">
-              <div class="status-left">
-                <!-- vide volontairement -->
+            <div class="hs-status-bar">
+              <div class="hs-status-left">
+                <span class="hs-time-top">22:26</span>
               </div>
-              <div class="status-right">
-                <span>5G</span>
-                <span>🔋 82%</span>
+              <div class="hs-status-right">
+                <div class="status-bars">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </div>
+                <div class="battery">
+                  <div class="battery-icon">
+                    <div class="battery-level"></div>
+                  </div>
+                  <span>100</span>
+                </div>
               </div>
             </div>
 
-            <!-- Widget heure/date -->
-            <section class="widget-clock glass">
-              <div class="widget-clock-time">21:09</div>
-              <div class="widget-clock-date">Lundi 1 décembre</div>
-            </section>
-
             <!-- Grille d'apps -->
-            <section class="app-grid">
-              <button class="app-icon" data-app="telephone">
-                <div class="app-icon-circle"></div>
-                <span class="app-icon-label">Téléphone</span>
+            <div class="apps-grid">
+              <button class="icon-app" data-app="settings">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Settings</span>
               </button>
-              <button class="app-icon" data-app="messages">
-                <div class="app-icon-circle"></div>
-                <span class="app-icon-label">Messages</span>
+              <button class="icon-app" data-app="apps">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Apps</span>
               </button>
-              <button class="app-icon" data-app="contacts">
-                <div class="app-icon-circle"></div>
-                <span class="app-icon-label">Contacts</span>
+              <button class="icon-app" data-app="clock">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Clock</span>
               </button>
-              <button class="app-icon" data-app="bank">
-                <div class="app-icon-circle"></div>
-                <span class="app-icon-label">Banque</span>
+              <button class="icon-app" data-app="mail">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Mail</span>
               </button>
-              <button class="app-icon" data-app="inventory">
-                <div class="app-icon-circle"></div>
-                <span class="app-icon-label">Inventaire</span>
+
+              <button class="icon-app" data-app="weather">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Weather</span>
               </button>
-              <button class="app-icon" data-app="telegrams">
-                <div class="app-icon-circle"></div>
-                <span class="app-icon-label">Télégrammes</span>
+              <button class="icon-app" data-app="browser">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Browser</span>
               </button>
-              <button class="app-icon" data-app="notes">
-                <div class="app-icon-circle"></div>
-                <span class="app-icon-label">Notes</span>
+              <button class="icon-app" data-app="wallet">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Wallet</span>
               </button>
-              <button class="app-icon" data-app="settings">
-                <div class="app-icon-circle"></div>
-                <span class="app-icon-label">Paramètres</span>
+              <button class="icon-app" data-app="garage">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Garage</span>
               </button>
-            </section>
+
+              <button class="icon-app" data-app="home">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Home</span>
+              </button>
+              <button class="icon-app" data-app="maps">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Maps</span>
+              </button>
+              <button class="icon-app" data-app="notes">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Notes</span>
+              </button>
+              <button class="icon-app" data-app="calculator">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Calculator</span>
+              </button>
+
+              <button class="icon-app" data-app="voice">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Voice Memos</span>
+              </button>
+              <button class="icon-app" data-app="services">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Services</span>
+              </button>
+              <button class="icon-app" data-app="music">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Music</span>
+              </button>
+              <button class="icon-app" data-app="market">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Market</span>
+              </button>
+
+              <button class="icon-app" data-app="pages">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Pages</span>
+              </button>
+              <button class="icon-app" data-app="trendy">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Trendy</span>
+              </button>
+              <button class="icon-app" data-app="spark">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Spark</span>
+              </button>
+              <button class="icon-app" data-app="instapic">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">InstaPic</span>
+              </button>
+
+              <button class="icon-app" data-app="birdy">
+                <div class="icon-app-square"></div>
+                <span class="icon-app-label">Birdy</span>
+              </button>
+            </div>
+
+            <!-- Dots -->
+            <div class="apps-page-dots">
+              <span class="page-dot active"></span>
+              <span class="page-dot"></span>
+              <span class="page-dot"></span>
+            </div>
 
             <!-- Dock -->
-            <section class="dock glass">
-              <button class="dock-app">
-                <span class="dock-app-dot"></span>
-                <span>Home</span>
+            <div class="dock">
+              <button class="dock-icon" data-app="phone">
+                <div class="dock-icon-inner"></div>
               </button>
-              <button class="dock-app">
-                <span>Menu</span>
+              <button class="dock-icon" data-app="messages">
+                <div class="dock-icon-inner"></div>
               </button>
-              <button class="dock-app">
-                <span>📶 Réseau</span>
+              <button class="dock-icon" data-app="camera">
+                <div class="dock-icon-inner"></div>
               </button>
-            </section>
+              <button class="dock-icon" data-app="photos">
+                <div class="dock-icon-inner"></div>
+              </button>
+            </div>
           </div>
 
           <!-- VUE D'APP -->
@@ -795,9 +732,7 @@
               <button class="back-button" id="backButton">‹</button>
               <div class="app-view-title" id="appViewTitle">App</div>
             </div>
-            <div class="app-view-body" id="appViewBody">
-              <!-- Contenu de l'app chargée -->
-            </div>
+            <div class="app-view-body" id="appViewBody"></div>
           </div>
         </div>
       </div>
