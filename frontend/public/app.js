@@ -2,10 +2,9 @@
 const lockTimeTop = document.querySelector(".ls-time-top");
 const lockTimeBig = document.querySelector(".ls-time-big");
 const lockDateEl = document.querySelector(".ls-date");
-
 const homeTimeTop = document.querySelector(".hs-time-top");
 
-// Fonction mise à jour de l'heure + date
+// Mise à jour heure + date
 function updateClock() {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, "0");
@@ -18,19 +17,19 @@ function updateClock() {
     month: "long",
   };
   const formatted = now.toLocaleDateString("fr-FR", options);
-  const dateStr = formatted.charAt(0).toLowerCase() + formatted.slice(1);
+  const dateStr =
+    formatted.charAt(0).toLowerCase() + formatted.slice(1);
 
   if (lockTimeTop) lockTimeTop.textContent = timeStr;
   if (lockTimeBig) lockTimeBig.textContent = timeStr;
   if (lockDateEl) lockDateEl.textContent = dateStr;
-
   if (homeTimeTop) homeTimeTop.textContent = timeStr;
 }
 
 updateClock();
 setInterval(updateClock, 1000);
 
-// ---- Gestion déverrouillage par swipe ----
+// ---- Déverrouillage par swipe ----
 const lockScreen = document.getElementById("lockScreen");
 const homeScreen = document.getElementById("homeScreen");
 const homeIndicator = document.getElementById("homeIndicator");
@@ -113,14 +112,14 @@ if (homeIndicator) {
   });
 }
 
-// Double clic sur la partie centrale pour PC (fallback rapide)
+// Double-clic sur le lockscreen pour PC (raccourci)
 lockScreen?.addEventListener("dblclick", () => {
   if (lockScreen.style.display !== "none") {
     unlockPhone();
   }
 });
 
-// ---- Gestion des apps (ouverture vue app) ----
+// ---- Gestion des apps ----
 const appView = document.getElementById("appView");
 const appViewTitle = document.getElementById("appViewTitle");
 const appViewBody = document.getElementById("appViewBody");
@@ -215,6 +214,7 @@ document.querySelectorAll(".icon-app").forEach((btn) => {
 document.querySelectorAll(".dock-icon").forEach((btn) => {
   btn.addEventListener("click", () => {
     const appKey = btn.getAttribute("data-app") || "App";
-    openApp(appKey, appKey.charAt(0).toUpperCase() + appKey.slice(1));
+    const label = appKey.charAt(0).toUpperCase() + appKey.slice(1);
+    openApp(appKey, label);
   });
 });
