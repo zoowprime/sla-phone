@@ -26,7 +26,7 @@
       color: #ffffff;
     }
 
-    /* ----- CADRE DU TÉLÉPHONE (iPhone 15/16) ----- */
+    /* ----- CADRE DU TÉLÉPHONE (iPhone 15) ----- */
     .phone-wrapper {
       padding: 12px;
       border-radius: 40px;
@@ -77,11 +77,6 @@
       box-shadow:
         0 3px 8px rgba(0, 0, 0, 0.85),
         0 0 0 1px rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: #f5f6ff;
       z-index: 4;
     }
 
@@ -104,6 +99,7 @@
       padding: 8px 4px 6px;
     }
 
+    /* barre de statut : heure à gauche, réseau/batterie à droite */
     .ls-status-bar {
       display: flex;
       align-items: center;
@@ -125,7 +121,7 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* Réseau & batterie façon iOS */
+    /* barres réseau façon iOS */
     .status-bars {
       display: flex;
       align-items: flex-end;
@@ -139,22 +135,12 @@
       opacity: 0.9;
     }
 
-    .bar:nth-child(1) {
-      height: 5px;
-      opacity: 0.5;
-    }
-    .bar:nth-child(2) {
-      height: 7px;
-      opacity: 0.65;
-    }
-    .bar:nth-child(3) {
-      height: 9px;
-      opacity: 0.8;
-    }
-    .bar:nth-child(4) {
-      height: 11px;
-    }
+    .bar:nth-child(1) { height: 5px; opacity: 0.5; }
+    .bar:nth-child(2) { height: 7px; opacity: 0.65; }
+    .bar:nth-child(3) { height: 9px; opacity: 0.8; }
+    .bar:nth-child(4) { height: 11px; }
 
+    /* batterie */
     .battery {
       display: flex;
       align-items: center;
@@ -189,6 +175,7 @@
       background: linear-gradient(90deg, #7cf081, #c3ff7c);
     }
 
+    /* heure centrale + date */
     .ls-center {
       flex: 1;
       display: flex;
@@ -211,6 +198,7 @@
       opacity: 0.98;
     }
 
+    /* bas d'écran : lampe, barre, appareil photo */
     .ls-bottom {
       display: flex;
       align-items: flex-end;
@@ -224,12 +212,10 @@
       width: 42px;
       height: 42px;
       border-radius: 999px;
-      background: radial-gradient(circle at top left, #ffffff26, #000000aa);
+      background: radial-gradient(circle at top left, #ffffff2b, #000000aa);
       box-shadow:
         0 10px 22px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(255, 255, 255, 0.06);
-      color: #f5f6ff;
-      font-size: 20px;
+        0 0 0 1px rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -242,6 +228,77 @@
       transform: scale(0.92) translateY(1px);
     }
 
+    /* icônes vectorielles maison (pas d'emojis) */
+    .ls-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.5);
+      position: relative;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 0 6px rgba(0, 0, 0, 0.8);
+    }
+
+    /* lampe torche */
+    .ls-icon-torch::before,
+    .ls-icon-torch::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f5f6ff;
+      border-radius: 2px;
+    }
+
+    .ls-icon-torch::before {
+      top: 5px;
+      width: 8px;
+      height: 9px;
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    }
+
+    .ls-icon-torch::after {
+      top: 13px;
+      width: 4px;
+      height: 4px;
+      opacity: 0.9;
+    }
+
+    /* appareil photo */
+    .ls-icon-camera::before,
+    .ls-icon-camera::after {
+      content: "";
+      position: absolute;
+      background: #f5f6ff;
+    }
+
+    .ls-icon-camera::before {
+      /* boîtier */
+      width: 12px;
+      height: 9px;
+      border-radius: 3px;
+      top: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    }
+
+    .ls-icon-camera::after {
+      /* objectif */
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      top: 9.5px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #12141e;
+      box-shadow:
+        0 0 0 1px #f5f6ff,
+        0 0 4px rgba(0, 0, 0, 0.9);
+    }
+
+    /* barre de déverrouillage */
     .ls-home-indicator-wrapper {
       flex: 1;
       display: flex;
@@ -277,15 +334,9 @@
     }
 
     @keyframes swipe-hint {
-      0% {
-        transform: translateX(-130%);
-      }
-      60% {
-        transform: translateX(130%);
-      }
-      100% {
-        transform: translateX(130%);
-      }
+      0%   { transform: translateX(-130%); }
+      60%  { transform: translateX(130%); }
+      100% { transform: translateX(130%); }
     }
 
     /* ===================== HOME SCREEN ===================== */
@@ -323,7 +374,7 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* Grille d'apps façon iOS */
+    /* icônes d'app façon iOS */
 
     .apps-grid {
       flex: 1;
@@ -394,7 +445,6 @@
     }
 
     /* Dock */
-
     .dock {
       margin-top: 4px;
       margin-inline: 6px;
@@ -447,10 +497,9 @@
     }
 
     /* ------ Vue d'application ------ */
-
     .app-view {
       position: absolute;
-      inset: 0 0 0 0;
+      inset: 10px 10px 16px;
       padding: 10px 4px 8px;
       display: none;
       flex-direction: column;
@@ -523,20 +572,16 @@
         padding: 8px;
         border-radius: 32px;
       }
-
       .phone-frame {
         border-radius: 26px;
       }
-
       .ls-time-big {
         font-size: 44px;
       }
-
       .icon-app-square {
         width: 48px;
         height: 48px;
       }
-
       .dock {
         margin-inline: 4px;
       }
@@ -579,11 +624,15 @@
             </div>
 
             <div class="ls-bottom">
-              <button class="ls-round-btn" aria-label="Lampe torche">🔦</button>
+              <button class="ls-round-btn" aria-label="Lampe torche">
+                <span class="ls-icon ls-icon-torch"></span>
+              </button>
               <div class="ls-home-indicator-wrapper">
                 <div class="ls-home-indicator" id="homeIndicator"></div>
               </div>
-              <button class="ls-round-btn" aria-label="Appareil photo">📷</button>
+              <button class="ls-round-btn" aria-label="Appareil photo">
+                <span class="ls-icon ls-icon-camera"></span>
+              </button>
             </div>
           </div>
 
