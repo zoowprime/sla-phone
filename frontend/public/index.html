@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  />
+  <title>Web Phone</title>
+  <style>
+    /* ----- RESET / BASE ----- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #1b2838, #050711 60%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", sans-serif;
+      color: #ffffff;
+    }
+
+    /* ----- CADRE DU TÉLÉPHONE (iPhone 15/16) ----- */
+    .phone-wrapper {
+      padding: 12px;
+      border-radius: 40px;
+      background: radial-gradient(circle at top left, #3a76ff33, #ffffff05);
+      box-shadow:
+        0 0 0 1px #ffffff11,
+        0 25px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    .phone-frame {
+      position: relative;
+      aspect-ratio: 9 / 19.5; /* ratio proche iPhone 15/16 */
+      width: min(380px, 100vw - 32px);
+      border-radius: 32px;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #283bff, #050711 70%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 0 40px rgba(40, 120, 255, 0.2);
+    }
+
+    .phone-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 12px 12px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at top left, #ff8fb844 0, transparent 55%),
+        radial-gradient(circle at bottom right, #5b8dff55 0, transparent 55%),
+        linear-gradient(145deg, #050815 0, #05040c 60%, #101b35 100%);
+      background-size: cover;
+    }
+
+    /* ----- DYNAMIC ISLAND / NOTCH ----- */
+    .dynamic-island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36%;
+      max-width: 180px;
+      height: 28px;
+      background: radial-gradient(circle at top, #2a2a2a, #000000);
+      border-radius: 999px;
+      box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      font-size: 10px;
+      color: #a9b1c7;
+    }
+
+    .dynamic-island-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #00ffcc, #007766);
+      box-shadow: 0 0 6px rgba(0, 255, 204, 0.6);
+    }
+
+    /* ----- BARRE DE STATUT ----- */
+    .status-bar {
+      margin-top: 42px; /* espace sous dynamic island */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #cfd6eb;
+      text-shadow: 0 0 4px #000;
+    }
+
+    .status-left,
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* ----- HOME SCREEN ----- */
+    .home-screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 8px;
+      gap: 12px;
+    }
+
+    /* WIDGETS (LIQUID GLASS) */
+    .glass {
+      background: radial-gradient(circle at top left, #ffffff1a, #ffffff05);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
+    .widget-clock {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .widget-clock-time {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .widget-clock-date {
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    /* GRILLE D’APPS */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 4px 4px 0;
+      flex: 1;
+    }
+
+    .app-icon {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 8px 4px 6px;
+      background: radial-gradient(circle at top left, #ffffff22, #00000044);
+      border-radius: 18px;
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #f9f9ff;
+      font-size: 11px;
+      transition:
+        transform 0.1s ease-out,
+        box-shadow 0.15s ease-out,
+        background 0.2s ease-out;
+    }
+
+    .app-icon-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 10px;
+      background: conic-gradient(
+        from 180deg,
+        #ff7a7a,
+        #ffb347,
+        #7af7ff,
+        #9c7aff,
+        #ff7a7a
+      );
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+    }
+
+    .app-icon-label {
+      text-shadow: 0 0 4px #000;
+      max-width: 100%;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .app-icon:active {
+      transform: scale(0.94) translateY(1px);
+      box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at bottom, #ffffff11, #00000077);
+    }
+
+    /* DOCK */
+    .dock {
+      margin-top: 4px;
+      padding: 6px 10px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .dock-app {
+      flex: 1;
+      height: 34px;
+      border-radius: 14px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: radial-gradient(circle at top left, #ffffff33, #00000055);
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      font-size: 11px;
+      color: #f6f7ff;
+      text-shadow: 0 0 4px #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.1s ease-out, box-shadow 0.15s ease-out;
+    }
+
+    .dock-app:active {
+      transform: scale(0.95) translateY(1px);
+      box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.14);
+    }
+
+    .dock-app-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22ff88;
+      box-shadow: 0 0 6px rgba(34, 255, 136, 0.7);
+    }
+
+    /* PETIT ADAPTATIF MOBILE */
+    @media (max-width: 380px) {
+      .phone-wrapper {
+        padding: 8px;
+        border-radius: 32px;
+      }
+
+      .phone-frame {
+        border-radius: 26px;
+      }
+
+      .widget-clock-time {
+        font-size: 26px;
+      }
+
+      .app-grid {
+        gap: 8px;
+      }
+
+      .app-icon {
+        padding: 6px 2px 4px;
+      }
+
+      .dock {
+        padding-inline: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-wrapper">
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island">
+          <span>Music</span>
+          <div class="dynamic-island-dot"></div>
+        </div>
+
+        <!-- Barre de statut -->
+        <div class="status-bar">
+          <div class="status-left">
+            <span class="status-pill">Belleshore</span>
+          </div>
+          <div class="status-right">
+            <span>5G</span>
+            <span>🔋 82%</span>
+          </div>
+        </div>
+
+        <!-- Home screen -->
+        <div class="home-screen">
+          <!-- Widget heure/date -->
+          <section class="widget-clock glass">
+            <div class="widget-clock-time">21:09</div>
+            <div class="widget-clock-date">Lundi 1 décembre</div>
+          </section>
+
+          <!-- Grille d'apps -->
+          <section class="app-grid">
+            <button class="app-icon">
+              <div class="app-icon-circle"></div>
+              <span class="app-icon-label">Téléphone</span>
+            </button>
+            <button class="app-icon">
+              <div class="app-icon-circle"></div>
+              <span class="app-icon-label">Messages</span>
+            </button>
+            <button class="app-icon">
+              <div class="app-icon-circle"></div>
+              <span class="app-icon-label">Contacts</span>
+            </button>
+            <button class="app-icon">
+              <div class="app-icon-circle"></div>
+              <span class="app-icon-label">Banque</span>
+            </button>
+            <button class="app-icon">
+              <div class="app-icon-circle"></div>
+              <span class="app-icon-label">Inventaire</span>
+            </button>
+            <button class="app-icon">
+              <div class="app-icon-circle"></div>
+              <span class="app-icon-label">Télégrammes</span>
+            </button>
+            <button class="app-icon">
+              <div class="app-icon-circle"></div>
+              <span class="app-icon-label">Notes</span>
+            </button>
+            <button class="app-icon">
+              <div class="app-icon-circle"></div>
+              <span class="app-icon-label">Paramètres</span>
+            </button>
+          </section>
+
+          <!-- Dock -->
+          <section class="dock glass">
+            <button class="dock-app">
+              <span class="dock-app-dot"></span>
+              <span>Home</span>
+            </button>
+            <button class="dock-app">
+              <span>Belleshore</span>
+            </button>
+            <button class="dock-app">
+              <span>📶 Réseau</span>
+            </button>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
