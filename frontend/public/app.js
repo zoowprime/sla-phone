@@ -44,7 +44,7 @@ function getDummyContentForApp(appKey) {
         <p>Plus tard ici : liste des conversations, messages RP, etc.</p>
         <ul>
           <li>Seiji Shimazu</li>
-          <li>Cillian Fitzgerald</li>
+          <li>Cilian Fitzgerald</li>
           <li>Banque Belleshore</li>
         </ul>
       `;
@@ -118,7 +118,7 @@ appIcons.forEach((btn) => {
   });
 });
 
-// Clics sur les boutons du dock (pour l'instant on revient à l'accueil ou on met un message)
+// Clics sur les boutons du dock
 const dockButtons = document.querySelectorAll(".dock-app");
 dockButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
